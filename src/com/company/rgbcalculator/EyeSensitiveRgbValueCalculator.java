@@ -1,6 +1,6 @@
-package com.company.rgb_calculator;
+package com.company.rgbcalculator;
 
-import com.company.rgb_calculator.abst.IRgbValueCalculator;
+import com.company.rgbcalculator.abst.IRgbValueCalculator;
 
 public class EyeSensitiveRgbValueCalculator implements IRgbValueCalculator {
     @Override

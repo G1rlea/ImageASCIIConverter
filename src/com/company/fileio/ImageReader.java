@@ -1,6 +1,6 @@
-package com.company.fileIO;
+package com.company.fileio;
 
-import com.company.rgb_calculator.abst.IRgbValueCalculator;
+import com.company.rgbcalculator.abst.IRgbValueCalculator;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,11 +16,8 @@ public class ImageReader {
     private File file;
     private BufferedImage image;
 
-    public ImageReader(IRgbValueCalculator calculator) {
+    public ImageReader(IRgbValueCalculator calculator, String filePath) {
         this.rgbValueCalculator = calculator;
-    }
-
-    public void setImagePath(String filePath) {
         instantiateFile(filePath);
         convertFileToImage();
     }

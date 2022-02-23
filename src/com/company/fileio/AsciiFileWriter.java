@@ -1,24 +1,32 @@
-package com.company.fileIO;
+package com.company.fileio;
 
-import com.company.ascii_converter.abst.IAsciiConverter;
+import com.company.asciiconverter.abst.IAsciiConverter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class AsciiFileWriter {
-    FileWriter fileWriter;
-    IAsciiConverter AsciiConverter;
 
-    public AsciiFileWriter(IAsciiConverter asciiConverter) {
+    private FileWriter fileWriter;
+    private String filePath;
+    private final IAsciiConverter AsciiConverter;
+
+    public AsciiFileWriter(IAsciiConverter asciiConverter, String filePath) {
+        this.filePath = filePath;
         this.AsciiConverter = asciiConverter;
         try {
-            this.fileWriter = new FileWriter("assets/ascii_img/ASCII_img.txt");
+            this.fileWriter = new FileWriter("assets/ascii_img/" + getFileName());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private String getFileName(){
+        int slashIndex = filePath.lastIndexOf('/') + 1;
+        int pointIndex = filePath.lastIndexOf('.') + 1;
+        return filePath.substring(slashIndex, pointIndex) + "txt";
+    }
 
     public void writeAsciiImage(int[][] arr){
         BufferedWriter writer = new BufferedWriter(fileWriter);
