@@ -1,6 +1,6 @@
-package com.company.service;
+package com.company.rgb_calculator;
 
-import com.company.service.abst.IRgbValueCalculator;
+import com.company.rgb_calculator.abst.IRgbValueCalculator;
 
 public class AverageRgbValueCalculator implements IRgbValueCalculator {
 
