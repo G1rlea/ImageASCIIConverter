@@ -9,7 +9,7 @@ import java.io.IOException;
 public class AsciiFileWriter {
 
     private FileWriter fileWriter;
-    private String filePath;
+    private final String filePath;
     private final IAsciiConverter AsciiConverter;
 
     public AsciiFileWriter(IAsciiConverter asciiConverter, String filePath) {

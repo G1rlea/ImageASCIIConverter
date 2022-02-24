@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ImageAsciiConverter app = new ImageAsciiConverter("assets/img/char.png");
-        app.convert();
+        var converter = new ImageAsciiConverter("assets/img/img.png");
+        converter.convert();
 
     }
 }

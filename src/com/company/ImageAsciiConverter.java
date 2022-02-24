@@ -3,6 +3,7 @@ package com.company;
 import com.company.asciiconverter.BasicAsciiConverter;
 import com.company.fileio.AsciiFileWriter;
 import com.company.fileio.ImageReader;
+import com.company.rgbcalculator.EyeSensitiveRgbValueCalculator;
 
 //God object
 public class ImageAsciiConverter {
@@ -14,11 +15,11 @@ public class ImageAsciiConverter {
     }
 
     public void convert(){
-        ImageReader imageReader = new ImageReader( (a,b,c) -> (a+b+c) / 3 , filePath);
-        int[][] rgbValueArray = imageReader.getRgbValueArray();
+        ImageReader imageReader = new ImageReader( new EyeSensitiveRgbValueCalculator(), filePath);
+        var pixelRgbValues = imageReader.getRgbValueArray();
 
         AsciiFileWriter fileWriter = new AsciiFileWriter(new BasicAsciiConverter(), filePath);
-        fileWriter.writeAsciiImage(rgbValueArray);
+        fileWriter.writeAsciiImage(pixelRgbValues);
 
     }
 }
