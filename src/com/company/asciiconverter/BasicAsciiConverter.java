@@ -19,7 +19,7 @@ public class BasicAsciiConverter implements IAsciiConverter {
     public char getChar(int rgbValue) {
         int asciiLength = asciiCharactersDensity.length() - 1;
         int charIndex = (int) (Math.ceil(((asciiLength) * rgbValue) / (float) 255));
-//        charIndex = asciiLength - charIndex; // inverts the character
+//        charIndex = asciiLength - charIndex; // inverts the character in the opposite side
         return asciiCharactersDensity.charAt(charIndex);
     }
 }

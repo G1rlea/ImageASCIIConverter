@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ImageReader {
@@ -19,13 +20,12 @@ public class ImageReader {
 
     public ImageReader(IRgbValueCalculator calculator, String filePath) {
         File file = instantiateFile(filePath);
+
         this.image = convertFileToImage(file);
         this.rgbValueCalculator = calculator;
         this.imageHeight = image.getHeight();
         this.imageWidth = image.getWidth();
     }
-
-
 
     private BufferedImage resizeImage() {
         calculateImageHeightAndWidth();
@@ -72,10 +72,22 @@ public class ImageReader {
         File file = null;
         try {
             file = new File(filePath);
+            checkIfFileIsAnImage(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return file;
+    }
+
+    private void checkIfFileIsAnImage(File file) throws IllegalArgumentException {
+        String fileName = file.getName();
+        if ( !(getFileExtension(fileName).equals("png") || getFileExtension(fileName).equals("jpg")))
+             throw new IllegalArgumentException("The provided file in NOT an image");
+    }
+
+    private String getFileExtension(String fileName){
+        int dotIndex = fileName.lastIndexOf('.');
+        return  (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
     }
 
     public int[][] getRgbValueArray() {
