@@ -11,6 +11,10 @@ public class BasicAsciiConverter implements IAsciiConverter {
         this.asciiCharactersDensity = asciiCharactersDensity.getDensity();
     }
 
+    public BasicAsciiConverter(){
+        this.asciiCharactersDensity = AsciiCharactersDensity.HIGH_DENSITY.getDensity();
+    }
+
     @Override
     public char getChar(int rgbValue) {
         int asciiLength = asciiCharactersDensity.length() - 1;

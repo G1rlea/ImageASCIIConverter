@@ -1,4 +1,4 @@
-package com.company.fileio;
+package com.company.imageio;
 
 import com.company.rgbcalculator.abst.IRgbValueCalculator;
 

@@ -1,4 +1,4 @@
-package com.company.fileio;
+package com.company.imageio;
 
 import com.company.asciiconverter.abst.IAsciiConverter;
 
@@ -6,13 +6,13 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class AsciiFileWriter {
+public class ImageWritter {
 
     private FileWriter fileWriter;
     private final String filePath;
     private final IAsciiConverter AsciiConverter;
 
-    public AsciiFileWriter(IAsciiConverter asciiConverter, String filePath) {
+    public ImageWritter(IAsciiConverter asciiConverter, String filePath) {
         this.filePath = filePath;
         this.AsciiConverter = asciiConverter;
         try {
