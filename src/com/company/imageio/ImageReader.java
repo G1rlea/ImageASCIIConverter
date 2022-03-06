@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ImageReader {
@@ -36,22 +35,23 @@ public class ImageReader {
         return outputImage;
     }
 
-    //TODO: Fix problem with scaling
     private void calculateImageHeightAndWidth() {
-//        float scale;
-//        if (imageWidth > imageHeight){
-//            scale = (float) (((float)imageWidth / (float)imageHeight) + 0.10);
-//            this.imageWidth = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
-//            this.imageHeight = (int)(MAXIMUM_IMAGE_LENGTH_IN_PIXELS / scale);
-//        }
-//        else{
-//            scale = (float) ((float)(imageHeight / imageWidth) + 0.10);
-//            this.imageWidth = (int)(MAXIMUM_IMAGE_LENGTH_IN_PIXELS / scale);
-//            this.imageHeight = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
-//        }
-        this.imageWidth = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
-        this.imageHeight = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
-    }
+        float scale;
+        if (imageWidth > imageHeight){
+            scale = ((float)imageWidth / (float)imageHeight);
+            this.imageWidth = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
+            this.imageHeight = (int)(MAXIMUM_IMAGE_LENGTH_IN_PIXELS / scale);
+        }
+        else if (imageWidth < imageHeight){
+            scale = ((float)imageHeight / (float)imageWidth);
+            this.imageWidth = (int)(MAXIMUM_IMAGE_LENGTH_IN_PIXELS / scale);
+            this.imageHeight = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
+        }
+        else {
+            this.imageWidth = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
+            this.imageHeight = MAXIMUM_IMAGE_LENGTH_IN_PIXELS;
+        }
+  }
 
     private BufferedImage convertFileToImage(File file) {
         BufferedImage image = null;
@@ -96,8 +96,8 @@ public class ImageReader {
 
         int[][] arr = new int[imageHeight][imageWidth];
 
-        for (int y = 0; y < imageWidth; y++) {
-            for (int x = 0; x < imageHeight; x++) {
+        for (int y = 0; y < imageHeight; y++) {
+            for (int x = 0; x < imageWidth; x++) {
                 int rgb = image.getRGB(x, y);
                 int red = (rgb >> 16) & 0xff;
                 int green = (rgb >> 8) & 0xff;
