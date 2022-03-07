@@ -1,18 +1,19 @@
 package com.company.imageio;
 
 import com.company.asciiconverter.abst.IAsciiConverter;
+import com.company.imageio.abst.AsciiWriter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ImageWritter {
+public class FileAsciiWriter implements AsciiWriter {
 
     private FileWriter fileWriter;
     private final String filePath;
     private final IAsciiConverter AsciiConverter;
 
-    public ImageWritter(IAsciiConverter asciiConverter, String filePath) {
+    public FileAsciiWriter(IAsciiConverter asciiConverter, String filePath) {
         this.filePath = filePath;
         this.AsciiConverter = asciiConverter;
         try {
