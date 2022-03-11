@@ -1,9 +1,9 @@
 package com.company.asciiconverter;
 
-import com.company.asciiconverter.abst.IAsciiConverter;
+import com.company.asciiconverter.abst.AsciiConverter;
 import com.company.asciiconverter.data.AsciiCharactersDensity;
 
-public class BasicAsciiConverter implements IAsciiConverter {
+public class BasicAsciiConverter implements AsciiConverter {
 
     private final String asciiCharactersDensity;
 

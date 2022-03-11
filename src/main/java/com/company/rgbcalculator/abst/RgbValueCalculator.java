@@ -1,5 +1,5 @@
 package com.company.rgbcalculator.abst;
 
-public interface IRgbValueCalculator {
+public interface RgbValueCalculator {
     int getRGBValue(int red, int green, int blue);
 }

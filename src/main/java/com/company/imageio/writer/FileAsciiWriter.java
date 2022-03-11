@@ -1,7 +1,8 @@
-package com.company.imageio;
+package com.company.imageio.writer;
 
-import com.company.asciiconverter.abst.IAsciiConverter;
-import com.company.imageio.abst.AsciiWriter;
+import com.company.asciiconverter.abst.AsciiConverter;
+import com.company.imageio.writer.abst.AsciiWriter;
+import lombok.Builder;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -11,11 +12,12 @@ public class FileAsciiWriter implements AsciiWriter {
 
     private FileWriter fileWriter;
     private final String filePath;
-    private final IAsciiConverter AsciiConverter;
+    private final AsciiConverter asciiConverter;
 
-    public FileAsciiWriter(IAsciiConverter asciiConverter, String filePath) {
+    @Builder
+    private FileAsciiWriter(AsciiConverter asciiConverter, String filePath) {
         this.filePath = filePath;
-        this.AsciiConverter = asciiConverter;
+        this.asciiConverter = asciiConverter;
         try {
             this.fileWriter = new FileWriter("assets/ascii_img/" + getFileName());
         } catch (IOException e) {
@@ -32,9 +34,9 @@ public class FileAsciiWriter implements AsciiWriter {
     public void writeAsciiImage(int[][] arr){
         BufferedWriter writer = new BufferedWriter(fileWriter);
         try {
-            for (var a: arr) {
-                for (int aa: a){
-                    writer.write(AsciiConverter.getChar(aa));
+            for (var row: arr) {
+                for (int element: row){
+                    writer.write(asciiConverter.getChar(element));
                 }
                 writer.write("\n");
             }

@@ -1,6 +1,7 @@
-package com.company.imageio;
+package com.company.imageio.reader;
 
-import com.company.rgbcalculator.abst.IRgbValueCalculator;
+import com.company.rgbcalculator.abst.RgbValueCalculator;
+import lombok.Builder;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,15 +12,16 @@ import java.io.IOException;
 public class ImageReader {
 
     private final static int MAXIMUM_IMAGE_LENGTH_IN_PIXELS = 150;
-    private final IRgbValueCalculator rgbValueCalculator;
-
+    private final RgbValueCalculator rgbValueCalculator;
     private int imageWidth;
     private int imageHeight;
     private BufferedImage image;
+//    private IRgbValueCalculator calculator;
+//    private String filePath;
 
-    public ImageReader(IRgbValueCalculator calculator, String filePath) {
+    @Builder
+    private ImageReader(RgbValueCalculator calculator, String filePath) {
         File file = instantiateFile(filePath);
-
         this.image = convertFileToImage(file);
         this.rgbValueCalculator = calculator;
         this.imageHeight = image.getHeight();
