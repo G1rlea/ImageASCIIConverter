@@ -11,13 +11,11 @@ import java.io.IOException;
 
 public class ImageReader {
 
-    private final static int MAXIMUM_IMAGE_LENGTH_IN_PIXELS = 150;
+    private final static int MAXIMUM_IMAGE_LENGTH_IN_PIXELS = 50;
     private final RgbValueCalculator rgbValueCalculator;
     private int imageWidth;
     private int imageHeight;
     private BufferedImage image;
-//    private IRgbValueCalculator calculator;
-//    private String filePath;
 
     @Builder
     private ImageReader(RgbValueCalculator calculator, String filePath) {
